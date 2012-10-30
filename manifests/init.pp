@@ -26,4 +26,10 @@ define webdavcgi (
         "/var/www/${hostname}/etc/webdav.conf":
             content => template('webdavcgi/webdav.conf.erb')
     }
+
+    apache::vhost {
+        'webdav_vhost':
+            port    => 80,
+            docroot => "/var/www/${hostname}/htdocs"
+    }
 }

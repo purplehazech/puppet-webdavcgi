@@ -1,5 +1,5 @@
 name    'puppet-webdavcgi'
-version '0.1.0'
+version '0.2.0'
 source 'git://github.com/purplehazech/puppet-webdavcgi.git'
 author 'purplehazech'
 license 'GNU Affero General Public License, version 3'
@@ -9,3 +9,4 @@ project_page 'https://github.com/purplehazech/puppet-webdavcgi'
 
 ## Add dependencies, if any:
 # dependency 'username/name', '>= 1.2.0'
+dependency 'puppetlabs/apache', '>= 0.4.0'
