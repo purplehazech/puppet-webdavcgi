@@ -40,7 +40,7 @@ define webdavcgi (
             ],
             template => 'apache/vhost-default.conf.erb'
     }
-    apache::vhost::include {
+    apache::vhost::include::rewrite {
         'webdav_rewrite':
             proxy_vhost => 'webdav_vhost',
             rules       => [
