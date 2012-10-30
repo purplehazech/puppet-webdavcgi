@@ -29,7 +29,23 @@ define webdavcgi (
 
     apache::vhost {
         'webdav_vhost':
-            port    => 80,
-            docroot => "/var/www/${hostname}/htdocs"
+            port     => 80,
+            docroot  => "/var/www/${hostname}/htdocs",
+            options  => 'FollowSymLinks IncludesNOEXEC SymlinksIfOwnerMatch',
+            override => [
+                'AuthConfig',
+                'FileInfo',
+                'Indexes',
+                'Limit'
+            ],
+            template => 'apache/vhost-default.conf.erb'
+    }
+    apache::vhost::include {
+        'webdav_rewrite':
+            proxy_vhost => 'webdav_vhost',
+            rules       => [
+                '^/logout /cgi-bin/logout [PT,E=REALM:WebDAV-CGI,E=HOMEURL:/,L]',
+                '^/ /cgi-bin/webdavwrapper [PT,E=WEBDAVCONF:/var/www/webdav.hq.rabe.ch/etc/webdav.conf,E=PERLLIB:/var/www/webdav.hq.rabe.ch/lib/perl,L]'
+            ]
     }
 }
