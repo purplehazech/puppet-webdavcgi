@@ -23,7 +23,7 @@ define webdavcgi (
     }
 
     file {
-        '/var/www/${hostname}/etc/webdav.conf':
+        "/var/www/${hostname}/etc/webdav.conf":
             content => template('webdavcgi/webdav.conf.erb')
     }
 }
