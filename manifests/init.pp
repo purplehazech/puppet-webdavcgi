@@ -24,6 +24,6 @@ define webdavcgi (
 
     file {
         '/var/www/${hostname}/etc/webdav.conf':
-            content => template('webdav/webdav.conf.erb')
+            content => template('webdavcgi/webdav.conf.erb')
     }
 }
