@@ -1,0 +1,62 @@
+## -- INSTALL_BASE
+## folder path to the webdav.conf, .css, .js, and. msg files for the Web
+## interface
+## (don't forget the trailing slash)
+$INSTALL_BASE='/var/www/<%= hostname %>/';
+
+## -- DOCUMENT_ROOT
+## by default the server document root
+## (don't forget a trailing slash '/'):
+$DOCUMENT_ROOT = '<%= docroot %>';
+
+## -- UMASK
+## mask for file/folder creation 
+## (it does not change permission of existing files/folders):
+$UMASK = 0007;
+
+## -- ENABLE_DAVMOUNT
+## enables DAV mount button in the folder navigation of the Web interface
+$ENABLE_DAVMOUNT = 0;
+
+## -- ENABLE_COMPRESSION
+## enables/disables gzip content encoding for the Web interface
+$ENABLE_COMPRESSION = 0;
+
+## -- PAGE_LIMIT
+## limits number of files/folders shown in the Web interface
+$PAGE_LIMIT=100;
+
+## -- PAGE_LIMITS
+## allowed selectable limits (-1 = show all)
+@PAGE_LIMITS = ( 5, 10, 15, 20, 30, 50, 100, -1);
+
+## -- DBI_(SRC/USER/PASS)
+## database setup for LOCK/UNLOCK/PROPPATCH/PROPFIND data
+# You need a single database for all users to share WebDAV locks and properties.
+# If you use a file based database like SQLite you have to use a singe file
+# writeable for all users. 
+$DBI_SRC='dbi:SQLite:dbname=/var/www/webdav.hq.rabe.ch/etc/db/webdav.db';
+$DBI_USER='';
+$DBI_PASS=''; 
+$CREATE_DB = !-e '/var/www/webdav.hq.rabe.ch/etc/db/webdav.db';
+
+## -- HEADER
+## content after body tag in the Web interfac
+$HEADER = '<div class="header"><img src="/favicon.ico" height="16px" style="float:left"/><img src="/favicon.ico" height="16px" style="float:right"/>WebDAV CGI - Web interface: You are logged in as <span title=.`id -a`.>' .$ENV{REMOTE_USER}.'</span> (<a href=/logout>Logout</a>).<div style="clear:both;"/></div>';
+
+## -- ENABLE_CALDAV
+## Disable CalDAV support for Lightning/Sunbird/iCal/iPhone calender/task
+## support
+$ENABLE_CALDAV = 0;
+
+## -- ENABLE_GROUPDAV
+## Disables GroupDAV (http://groupdav.org/draft-hess-groupdav-01.txt)
+$ENABLE_GROUPDAV = 0;
+
+## -- ENABLE_THUMBNAIL
+## Disable image thumbnail support and media rss feed for folder listings of the
+##  Web interface.
+## If enabled the default icons for images will be replaced by thumbnails
+## and if the mouse is over a icon the icon will be zoomed to the size of
+## $THUMBNAIL_WIDTH.
+$ENABLE_THUMBNAIL = 0;
